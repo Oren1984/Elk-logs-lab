@@ -1,72 +1,94 @@
-# elk-student-logs-lab
+# ELK Student Logs Lab
 
-A minimal, ready-to-run **ELK** lab that ingests demo events into an index called `student_logs`, so you can explore them in **Kibana**.
+Minimal ELK lab for ingesting demo events into `student_logs` and exploring them in Kibana.
 
-## What’s inside
-- `docker-compose.yml` — Elasticsearch + Kibana (single-node, security disabled for lab)
-- `scripts/generate_advanced_logs.sh` — generates 50 demo events with a basic mapping
-- `scripts/stream_logs.sh` — optional continuous log streamer (Ctrl+C to stop)
-- `scripts/curl-cheats.sh` — quick `_health`, `_count`, searches and aggregations
-- `kibana/` — placeholder for Kibana saved objects (NDJSON) if you export/import
+---
 
-## Prerequisites
-- Docker & Docker Compose
-- `curl`
+## Overview
 
-## Quick start
+A simple, ready-to-run ELK setup for practicing log ingestion, basic searches, and Kibana visualizations with demo data.
+
+---
+
+## Tech Stack
+
+- Elasticsearch
+- Kibana
+- Docker Compose
+- Bash
+- curl
+
+---
+
+## Quick Start
+
 ```bash
 docker compose up -d
 curl -s http://localhost:9200/_cluster/health?pretty
 
+### Generate demo data:
 
-Generate demo data
 chmod +x scripts/generate_advanced_logs.sh
-./scripts/generate_advanced_logs.sh       # default: 50 events into student_logs
+./scripts/generate_advanced_logs.sh
 
-# (optional) continuous stream
+### Optional continuous stream:
+
 chmod +x scripts/stream_logs.sh
-./scripts/stream_logs.s
+./scripts/stream_logs.sh
 
+---
 
-Kibana
+## Usage
 
-Open: http://localhost:5601
+- Open Kibana: http://localhost:5601
 
-Create a Data View: student_logs* (time field: timestamp)
+- Create a Data View: student_logs*
 
-Try simple visuals:
+- Select timestamp as the time field
 
-Bar: actions/users
+- Explore logs, searches, and simple visualizations
 
-Pie: products
+Useful examples:
 
-Metric: errors (status_code >= 400)
+- Bar chart: actions / users
 
-Line: avg duration_ms
+- Pie chart: products
 
-Build a dashboard; export your saved objects (NDJSON) into kibana/ if you like.
+- Metric: errors (status_code >= 400)
 
+- Line chart: average duration_ms
 
-Quick checks
+Quick checks:
+
 ./scripts/curl-cheats.sh
 
+---
 
-Cleanup / Reset
-# reset data only
+## Cleanup
+
+Reset data only:
+
 curl -X DELETE http://localhost:9200/student_logs
 
-# stop stack
+Stop the stack:
+
 docker compose down -v
 
+---
 
-Notes
+## Notes
 
-Security is disabled for simplicity; enable xpack when needed.
+- Security is disabled for lab simplicity
 
-You can override defaults via env vars:
+- Built for learning and demo purposes
 
-generator: ES_URL, INDEX, COUNT
+- Default values can be overridden with environment variables
 
-streamer: INDEX, INTERVAL
+Env vars:
 
+- Generator: ES_URL, INDEX, COUNT
+
+- Streamer: INDEX, INTERVAL
+
+---
 
