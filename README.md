@@ -25,16 +25,21 @@ A simple, ready-to-run ELK setup for practicing log ingestion, basic searches, a
 ```bash
 docker compose up -d
 curl -s http://localhost:9200/_cluster/health?pretty
+```
 
 ### Generate demo data:
 
+```bash
 chmod +x scripts/generate_advanced_logs.sh
 ./scripts/generate_advanced_logs.sh
+```
 
 ### Optional continuous stream:
 
+```bash
 chmod +x scripts/stream_logs.sh
 ./scripts/stream_logs.sh
+```
 
 ---
 
@@ -60,7 +65,9 @@ Useful examples:
 
 Quick checks:
 
+```bash
 ./scripts/curl-cheats.sh
+```
 
 ---
 
@@ -68,11 +75,15 @@ Quick checks:
 
 Reset data only:
 
+```bash
 curl -X DELETE http://localhost:9200/student_logs
+```
 
 Stop the stack:
 
+```bash
 docker compose down -v
+```
 
 ---
 
