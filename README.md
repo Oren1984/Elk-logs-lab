@@ -1,4 +1,4 @@
-# ELK Student Logs Lab
+# ELK Logs Lab
 
 Minimal ELK lab for ingesting demo events into `student_logs` and exploring them in Kibana.
 
